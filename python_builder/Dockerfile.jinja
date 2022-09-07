@@ -1,0 +1,7 @@
+FROM {{ BASE_IMAGE_OS }}
+
+RUN dnf install wget yum-utils make gcc openssl-devel bzip2-devel libffi-devel zlib-devel -y
+RUN curl --retry 5 https://www.python.org/ftp/python/{{ PYTHON_VERSION }}/Python-{{ PYTHON_VERSION }}{{ PYTHON_PRERELEASE_TAG }}.tgz -o /python.tgz && mkdir /python && tar xzf /python.tgz -C /python --strip-components 1
+RUN cd /python && ./configure --with-system-ffi --with-computed-gotos --enable-loadable-sqlite-extensions && make -j ${nproc}
+
+RUN cd /python && make install
