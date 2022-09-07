@@ -1,5 +1,8 @@
 #!/bin/bash
 
+python3 -m pip install docker-jinja3
+
+
 LATEST_PYTHON_VERSION="3.10.7"
 PYTHON_PRERELEASE_TAG=${PYTHON_PRERELEASE_TAG:-""}
 OS_RELEASE_TAG=${OS_RELEASE_TAG:-stream9}
